@@ -1,0 +1,6 @@
+{
+  "name": "Queens Unlimited",
+  "description": "Queens Unlimited - Place queens strategically on color-coded grid regions without conflicts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

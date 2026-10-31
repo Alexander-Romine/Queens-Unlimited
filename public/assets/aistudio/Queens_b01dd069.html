@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queens Unlimited</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45 45'%3E%3Cdefs%3E%3ClinearGradient id='qGold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffe066'/%3E%3Cstop offset='50%25' stop-color='%23facc15'/%3E%3Cstop offset='100%25' stop-color='%23ca8a04'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%232e1402' stroke='%232e1402' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 9 26 C 17.5 24.5 30 24.5 36 26 L 38 14 L 32 21 L 22.5 11 L 13 21 L 7 14 L 9 26 z'/%3E%3Cpath d='M 9 26 C 9 28 10.5 28 11.5 30 C 12.5 31.5 12.5 31 12 33.5 C 10.5 34.5 10.5 36 10.5 36 C 9 37.5 11 38.5 11 38.5 C 17.5 39.5 27.5 39.5 34 38.5 C 34 38.5 35.5 37.5 34 36 C 34 36 34.5 34.5 33 33.5 C 32.5 31 32.5 31.5 33.5 30 C 34.5 28 36 28 36 26 C 27.5 24.5 17.5 24.5 9 26 z'/%3E%3Ccircle cx='6' cy='12' r='2.5'/%3E%3Ccircle cx='14' cy='9' r='2.5'/%3E%3Ccircle cx='22.5' cy='8' r='2.5'/%3E%3Ccircle cx='31' cy='9' r='2.5'/%3E%3Ccircle cx='39' cy='12' r='2.5'/%3E%3C/g%3E%3Cg fill='url(%23qGold)' stroke='%23633202' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 9 26 C 17.5 24.5 30 24.5 36 26 L 38 14 L 32 21 L 22.5 11 L 13 21 L 7 14 L 9 26 z'/%3E%3Cpath d='M 9 26 C 9 28 10.5 28 11.5 30 C 12.5 31.5 12.5 31 12 33.5 C 10.5 34.5 10.5 36 10.5 36 C 9 37.5 11 38.5 11 38.5 C 17.5 39.5 27.5 39.5 34 38.5 C 34 38.5 35.5 37.5 34 36 C 34 36 34.5 34.5 33 33.5 C 32.5 31 32.5 31.5 33.5 30 C 34.5 28 36 28 36 26 C 27.5 24.5 17.5 24.5 9 26 z'/%3E%3Cpath d='M 11.5 30 C 15 29 30 29 33.5 30' fill='none' stroke='%23633202' stroke-width='1.4'/%3E%3Cpath d='M 12 33.5 C 18 32.5 27 32.5 33 33.5' fill='none' stroke='%23633202' stroke-width='1.4'/%3E%3Ccircle cx='6' cy='12' r='2.2'/%3E%3Ccircle cx='14' cy='9' r='2.2'/%3E%3Ccircle cx='22.5' cy='8' r='2.2'/%3E%3Ccircle cx='31' cy='9' r='2.2'/%3E%3Ccircle cx='39' cy='12' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="alternate icon" href="/favicon.svg?v=transparent">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+  /* =========================================
+     CSS VARIABLES & THEMING
+     ========================================= */
+  :root {
+    --bg: #0a0414;
+    --panel: #160b26;
+    --panel-alt: #22123a;
+    --border: #3b2359;
+    --border-soft: #22123a;
+    --text: #f4effa;
+    --muted: #9f8eb3;
+    --gold: #facc15;
+    --gold-grad: #ca8a04;
+    --gold-dim: #423304;
+    --purple: #b07bfa;
+    --purple-dim: #281c3b;
+    --red: #ff6b6b;
+    --red-bg: rgba(255,80,80,0.08);
+    --red-bg-hover: rgba(255,80,80,0.15);
+    --red-border: #6b2b2b;
+    --red-text: #ff8a8a;
+    --board-bg: transparent;
+    --overlay: rgba(10,4,20,0.88);
+    --btn-text: #05020a;
+  }
+
+  body.light-theme {
+    --bg: #faf5ff;
+    --panel: #ffffff;
+    --panel-alt: #f3e8ff;
+    --border: #d8b4fe;
+    --border-soft: #f3e8ff;
+    --text: #1a1025;
+    --muted: #8b5cf6;
+    --gold: #facc15;
+    --gold-grad: #fde047;
+    --gold-dim: #fef08a;
+    --purple: #8b5cf6;
+    --purple-dim: #f3e8ff;
+    --red: #ef4444;
+    --red-bg: #fee2e2;
+    --red-bg-hover: #fecaca;
+    --red-border: #fca5a5;
+    --red-text: #dc2626;
+    --overlay: rgba(250,245,255,0.88);
+    --btn-text: #000000;
+  }
+
+  body.high-contrast {
+    --border: #563b7d;
+    --muted: #d8cce6;
+  }
+  body.high-contrast .panel {
+    box-shadow: none !important;
+    outline: 1.5px solid var(--border);
+  }
+
+  /* =========================================
+     BASE STYLES & LAYOUT
+     ========================================= */
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, #160b26 0%, #0a0414 60%);
+    color: var(--text);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  body.light-theme { background: var(--bg); }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 0; }
+
+  h1.title { font-size: 22px; letter-spacing: 3px; margin: 4px 0 18px; font-weight: 800; }
+  h1.title span { color: var(--gold); }
+
+  .summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .card { position: relative; overflow: hidden; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--gold-grad), var(--gold)); }
+  .card-label { font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; }
+  .card-value { font-size: 28px; font-weight: 700; color: var(--gold); }
+  .card-value.alt { color: var(--purple); }
+
+  .main-row { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; align-items: stretch; }
+  .side-col { display: flex; flex-direction: column; gap: 14px; height: 100%; }
+
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 18px; }
+  .panel.board-panel { display: flex; flex-direction: column; justify-content: space-between; }
+  .panel-header { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 2px; color: var(--muted); margin-bottom: 14px; justify-content: space-between; }
+  .panel-header .left { display: flex; align-items: center; gap: 8px; }
+  .bar { width: 3px; height: 13px; background: var(--gold); display: inline-block; border-radius: 2px; }
+  .timer { font-size: 13px; color: var(--purple); font-weight: 700; letter-spacing: 1px; }
+
+  /* =========================================
+     ACCORDION PANELS
+     ========================================= */
+  .panel.acc-panel { 
+    display: grid;
+    grid-template-rows: auto 0fr;
+    row-gap: 0px;
+    transition: flex-grow 0.3s ease, grid-template-rows 0.3s ease, row-gap 0.3s ease, background 0.2s, border-color 0.2s, transform 0.15s ease; 
+  }
+  .panel.acc-panel:not(.expanded) { cursor: pointer; }
+  .panel.acc-panel:not(.expanded):hover { background: var(--panel-alt); border-color: var(--gold-dim); }
+  .panel.acc-panel:not(.expanded):active { transform: scale(0.99); }
+  .panel.acc-panel:not(.expanded) .panel-header { pointer-events: none; color: var(--text); }
+  .panel-header.acc-header { margin-bottom: 0; user-select: none; transition: color 0.2s; }
+  
+  .acc-body { min-height: 0; overflow: hidden; opacity: 0; display: flex; flex-direction: column; transition: opacity 0.3s ease; }
+  
+  .panel.acc-panel.expanded { flex-grow: 1; grid-template-rows: auto 1fr; row-gap: 14px; }
+  .panel.acc-panel.expanded .acc-body { opacity: 1; justify-content: space-between; }
+  
+  .rules-list { margin: 0; padding-left: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; display: flex; flex-direction: column; justify-content: space-evenly; flex-grow: 1; }
+  .rules-list strong { color: var(--gold); }
+
+  /* =========================================
+     GAME BOARD
+     ========================================= */
+  .board-wrap { display: flex; justify-content: center; align-items: center; flex-grow: 1; position: relative; }
+  .board {
+    display: grid;
+    width: min(460px, 86vw);
+    height: min(460px, 86vw);
+    gap: 3px;
+    background: var(--board-bg);
+    border: 2px solid var(--board-bg);
+    border-radius: 8px;
+    padding: 4px;
+    user-select: none;
+    touch-action: none;
+  }
+  .cell {
+    position: relative;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cell .mark { font-weight: 800; color: rgba(20,20,20,0.55); font-size: calc(min(460px, 86vw) / var(--n) * 0.4); line-height: 1; }
+  .cell .queen-icon { width: 60%; height: 60%; color: #161616; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3)); }
+  .cell .queen-icon svg { width: 100%; height: 100%; display: block; }
+  .cell.conflict .queen-icon { color: var(--red); animation: pulse 1s ease-in-out infinite; }
+  .cell .cb-mark { position: absolute; top: 3px; left: 3px; font-size: 10px; color: rgba(0,0,0,0.55); font-weight: 800; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: inset 0 0 0 2px rgba(255,60,60,0.95); }
+    50% { box-shadow: inset 0 0 0 2px rgba(255,60,60,0.25); }
+  }
+
+  .board-footer { display: flex; justify-content: center; margin-top: 14px; font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  .board-footer span { color: var(--text); font-weight: 700; }
+
+  /* =========================================
+     STATS & CONTROLS
+     ========================================= */
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px dashed var(--border-soft); font-size: 13px; }
+  .stat-row .k { color: var(--muted); }
+  .stat-row .v { color: var(--text); font-weight: 700; }
+
+  .assist-row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; margin-bottom: 18px; }
+  .assist-row .k { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  
+  .toggle-group { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .toggle-group button { background: var(--panel-alt); border: none; color: var(--muted); font-family: inherit; font-size: 11px; letter-spacing: 1px; padding: 6px 10px; cursor: pointer; transition: all 0.15s ease; }
+  .toggle-group button:not(.active):hover { background: var(--border-soft); color: var(--text); }
+  .toggle-group button:active { transform: scale(0.92); }
+  .toggle-group button.active { background: var(--gold-dim); color: var(--gold); }
+
+  .actions { display: flex; flex-direction: column; gap: 10px; }
+  .btn-primary, .btn-danger { border: none; border-radius: 8px; padding: 13px; font-family: inherit; font-weight: 700; font-size: 13px; letter-spacing: 1px; cursor: pointer; transition: all 0.15s ease; }
+  .btn-primary { background: var(--gold); color: var(--btn-text); }
+  body.light-theme #newBoardBtn { color: #ffffff; }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-primary:active { filter: brightness(0.95); transform: translateY(1px) scale(0.98); }
+  .btn-danger { background: var(--red-bg); color: var(--red-text); border: 1px solid var(--red-border); }
+  .btn-danger:hover { background: var(--red-bg-hover); transform: translateY(-1px); }
+  .btn-danger:active { transform: translateY(1px) scale(0.98); }
+
+  .size-value { color: var(--gold); font-weight: 700; font-size: 12px; }
+  .size-buttons { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .size-buttons button { background: var(--panel-alt); border: 1px solid var(--border); color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 700; padding: 11px 0; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
+  .size-buttons button:not(.active):hover { background: var(--border-soft); color: var(--text); transform: translateY(-1px); }
+  .size-buttons button:active { transform: scale(0.92); }
+  .size-buttons button.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+  /* =========================================
+     OVERLAYS & MODALS
+     ========================================= */
+  .win-overlay {
+    position: absolute; inset: 0; background: var(--overlay); border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease; padding: 20px;
+  }
+  .win-overlay.show { opacity: 1; pointer-events: all; }
+  .win-overlay .big { font-size: 26px; color: var(--gold); font-weight: 800; letter-spacing: 2px; margin-bottom: 8px; }
+  .win-overlay .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+  .win-overlay button { background: var(--gold); color: var(--btn-text); border: none; padding: 12px 22px; border-radius: 8px; font-family: inherit; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.15s ease; }
+  .win-overlay button:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3); }
+  .win-overlay button:active { transform: translateY(0) scale(0.95); box-shadow: none; }
+
+  .settings-fab {
+    position: fixed; right: 22px; bottom: 22px; width: 42px; height: 42px; border-radius: 50%;
+    background: var(--panel); border: 1px solid var(--border); color: var(--muted); font-size: 19px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 50;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .settings-fab:hover { color: var(--gold); border-color: var(--gold); transform: scale(1.1) rotate(45deg); }
+  .settings-fab:active { transform: scale(0.9) rotate(45deg); }
+
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+  .modal-backdrop.show { display: flex; }
+  .modal { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; width: 100%; max-width: 440px; max-height: 86vh; overflow-y: auto; padding: 20px 22px 26px; }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .modal-header h2 { margin: 0; font-size: 20px; font-weight: 800; }
+  
+  .modal-close { background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; transition: all 0.15s ease; }
+  .modal-close:hover { color: var(--red); transform: scale(1.2); }
+  .modal-close:active { transform: scale(0.9); }
+  
+  .modal-section-label { font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 20px 0 10px; }
+  .setting-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+  .setting-row .stitle { font-weight: 700; font-size: 13.5px; }
+  .setting-row .sdesc { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  
+  .pair-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+  .pair-toggle button { background: var(--panel-alt); border: none; color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .5px; padding: 7px 12px; cursor: pointer; transition: all 0.15s ease; }
+  .pair-toggle button:not(.active):hover { background: var(--border-soft); color: var(--text); }
+  .pair-toggle button:active { transform: scale(0.92); }
+  .pair-toggle button.active { background: var(--gold-dim); color: var(--gold); }
+  
+  .volume-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+  .volume-row input[type=range] { flex: 1; accent-color: var(--gold); }
+  .volume-row .vol-label { font-size: 12px; color: var(--muted); width: 34px; text-align: right; }
+  
+  .reset-btn { width: 100%; margin-top: 18px; background: var(--red-bg); border: 1px solid var(--red-border); color: var(--red-text); font-family: inherit; font-weight: 700; letter-spacing: 1px; padding: 13px; border-radius: 8px; cursor: pointer; transition: all 0.15s ease; }
+  .reset-btn:hover { background: var(--red-bg-hover); transform: translateY(-1px); }
+  .reset-btn:active { transform: translateY(1px) scale(0.98); }
+
+  @media (max-width: 760px) {
+    .main-row { grid-template-columns: 1fr; }
+    .summary-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <h1 class="title">QUEENS <span>// UNLIMITED</span></h1>
+
+    <!-- Global Stats Header -->
+    <div class="summary-row">
+      <div class="card">
+        <div class="card-label">PUZZLES SOLVED</div>
+        <div class="card-value" id="solvedCount">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">CURRENT STREAK</div>
+        <div class="card-value alt" id="streakCount">0</div>
+      </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div class="main-row">
+      <div class="panel board-panel">
+        <div class="panel-header">
+          <div class="left"><span class="bar"></span>BOARD · <span id="dimLabel">8×8</span></div>
+          <div class="timer" id="timer">00:00</div>
+        </div>
+        <div class="board-wrap">
+          <div class="board" id="board"></div>
+          <div class="win-overlay" id="winOverlay">
+            <div class="big">SOLVED ✓</div>
+            <div class="sub" id="winSub">Time: 00:00</div>
+            <button id="nextBtn">Next Board</button>
+          </div>
+        </div>
+        <div class="board-footer">Queens placed: <span id="queenCount">0</span>/<span id="queenTotal">8</span></div>
+      </div>
+
+      <!-- Sidebar Controls -->
+      <div class="side-col">
+        <!-- Accordion 1: Stats -->
+        <div class="panel acc-panel expanded" id="statsPanel">
+          <div class="panel-header acc-header" id="statsHeader">
+            <div class="left"><span class="bar"></span>STATS</div>
+          </div>
+          <div class="acc-body" id="statsBody">
+            <div class="stat-row"><span class="k">Games solved</span><span class="v" id="statSolved">0</span></div>
+            <div class="stat-row"><span class="k">Best time</span><span class="v" id="statBest">—</span></div>
+            <div class="stat-row"><span class="k">Average time</span><span class="v" id="statAvg">—</span></div>
+            <div class="stat-row"><span class="k">Boards generated</span><span class="v" id="statGenerated">1</span></div>
+
+            <div class="assist-row">
+              <span class="k">HIGHLIGHT CONFLICTS</span>
+              <div class="toggle-group" id="assistToggle">
+                <button data-val="on" class="active">ON</button>
+                <button data-val="off">OFF</button>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" id="newBoardBtn">New Board</button>
+              <button class="btn-danger" id="clearBtn">Clear Board</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2: How to Play -->
+        <div class="panel acc-panel" id="rulesPanel">
+          <div class="panel-header acc-header" id="rulesHeader">
+            <div class="left"><span class="bar"></span>HOW TO PLAY</div>
+          </div>
+          <div class="acc-body" id="rulesBody">
+            <ul class="rules-list">
+              <li>Place exactly <strong>1 Queen</strong> per row, column, and colored region.</li>
+              <li>Queens cannot touch each other, not even diagonally.</li>
+              <li>Click once to mark an '×', twice for a Queen, and a third time to clear.</li>
+              <li>Click and drag to quickly paint multiple cells.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Board Size Selector -->
+        <div class="panel size-panel">
+          <div class="panel-header">
+            <div class="left"><span class="bar"></span>BOARD SIZE</div>
+            <span class="size-value" id="sizeLabel">8×8</span>
+          </div>
+          <div class="size-buttons" id="sizeButtons">
+            <button data-v="5">5</button>
+            <button data-v="6">6</button>
+            <button data-v="7">7</button>
+            <button data-v="8" class="active">8</button>
+            <button data-v="9">9</button>
+            <button data-v="10">10</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings FAB & Modal -->
+  <div class="settings-fab" id="settingsFab">⚙</div>
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+
+      <div class="modal-section-label">APPEARANCE</div>
+      <div class="setting-row">
+        <div><div class="stitle">Theme</div><div class="sdesc">Dark or light interface</div></div>
+        <div class="pair-toggle" id="themeToggle">
+          <button data-val="dark" class="active">Dark</button>
+          <button data-val="light">Light</button>
+        </div>
+      </div>
+
+      <div class="modal-section-label">COLOR & VISION</div>
+      <div class="setting-row">
+        <div><div class="stitle">High Contrast</div><div class="sdesc">Strengthens borders and dimmed text</div></div>
+        <div class="pair-toggle" id="contrastToggle">
+          <button data-val="off" class="active">Off</button>
+          <button data-val="on">On</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div><div class="stitle">Color Blind Mode</div><div class="sdesc">Adds a symbol to each region</div></div>
+        <div class="pair-toggle" id="cbToggle">
+          <button data-val="off" class="active">Off</button>
+          <button data-val="on">On</button>
+        </div>
+      </div>
+
+      <div class="modal-section-label">SOUND</div>
+      <div class="setting-row">
+        <div><div class="stitle">Sound Effects</div><div class="sdesc">Plays sounds for all game actions</div></div>
+        <div class="pair-toggle" id="soundToggle">
+          <button data-val="off">Off</button>
+          <button data-val="on" class="active">On</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div style="width:100%">
+          <div class="stitle">Volume</div>
+          <div class="sdesc" style="margin-bottom:8px">Adjust overall sound volume</div>
+          <div class="volume-row">
+            <input type="range" id="volumeSlider" min="0" max="100" value="70">
+            <span class="vol-label" id="volumeLabel">70%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section-label">GAME</div>
+      <button class="reset-btn" id="resetBtn">Reset All Progress</button>
+    </div>
+  </div>
+
+<script>
+(function() {
+  /** 
+   * CONSTANTS & ASSETS 
+   */
+  const PALETTE = ["#b9a3e3","#f5b971","#8ec6f0","#a8d8a0","#d6d6d6","#f28b82","#e8ea9e","#f7a8c4","#8ecfc9","#c9a37a"];
+  const CB_SYMBOLS = ["●","▲","■","◆","★","✚","⬢","◐","▶","✦"];
+  const QUEEN_SVG =
+    '<svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">' +
+      '<g fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M 9 26 C 17.5 24.5 30 24.5 36 26 L 38 14 L 32 21 L 22.5 11 L 13 21 L 7 14 L 9 26 z"/>' +
+        '<path d="M 9 26 C 9 28 10.5 28 11.5 30 C 12.5 31.5 12.5 31 12 33.5 C 10.5 34.5 10.5 36 10.5 36 C 9 37.5 11 38.5 11 38.5 C 17.5 39.5 27.5 39.5 34 38.5 C 34 38.5 35.5 37.5 34 36 C 34 36 34.5 34.5 33 33.5 C 32.5 31 32.5 31.5 33.5 30 C 34.5 28 36 28 36 26 C 27.5 24.5 17.5 24.5 9 26 z"/>' +
+        '<path d="M 11.5 30 C 15 29 30 29 33.5 30"/>' +
+        '<path d="M 12 33.5 C 18 32.5 27 32.5 33 33.5"/>' +
+        '<circle cx="6" cy="12" r="2" />' +
+        '<circle cx="14" cy="9" r="2" />' +
+        '<circle cx="22.5" cy="8" r="2" />' +
+        '<circle cx="31" cy="9" r="2" />' +
+        '<circle cx="39" cy="12" r="2" />' +
+      '</g>' +
+    '</svg>';
+
+  /**
+   * GLOBAL STATE
+   */
+  let N = 8;
+  let regions = [];
+  let board = [];
+  
+  let assistOn = true;
+  let colorBlindOn = false;
+
+  let solvedCount = 0;
+  let streak = 0;
+  let generatedCount = 1;
+  let bestTimeMs = null;
+  let totalSolveMs = 0;
+
+  let startTime = null;
+  let timerInterval = null;
+  let solved = false;
+
+  let soundOn = true;
+  let volume = 0.7;
+  let audioCtx = null;
+
+  // Drag-paint interaction state
+  let isMouseDown = false;
+  let dragMoved = false;
+  let dragStart = null;
+  let dragPaintVal = 1;
+  let dragTouched = null;
+
+  /**
+   * CACHED DOM ELEMENTS
+   */
+  const elBoard = document.getElementById('board');
+  const elTimer = document.getElementById('timer');
+  const elSolvedCount = document.getElementById('solvedCount');
+  const elStreakCount = document.getElementById('streakCount');
+  const elStatSolved = document.getElementById('statSolved');
+  const elStatBest = document.getElementById('statBest');
+  const elStatAvg = document.getElementById('statAvg');
+  const elStatGenerated = document.getElementById('statGenerated');
+  const elQueenCount = document.getElementById('queenCount');
+  const elQueenTotal = document.getElementById('queenTotal');
+  const elDimLabel = document.getElementById('dimLabel');
+
+  /**
+   * HELPERS
+   */
+
+  /** Randomize array in-place */
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  /** Format milliseconds to MM:SS string */
+  function fmtTime(ms){
+    const totalSec = Math.floor(ms / 1000);
+    const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
+    const s = (totalSec % 60).toString().padStart(2, '0');
+    return m + ":" + s;
+  }
+
+  /**
+   * AUDIO SYSTEM
+   */
+  function ensureAudio(){
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  function playTone(freq, dur, type){
+    if(!soundOn) return;
+    try {
+      ensureAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = volume * 0.5;
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch(e) { }
+  }
+
+  function sfxMark()  { playTone(320, 0.07, 'square'); }
+  function sfxQueen() { playTone(520, 0.1, 'sine'); }
+  function sfxClear() { playTone(200, 0.07, 'triangle'); }
+  function sfxWin() {
+    playTone(523, 0.14, 'sine');
+    setTimeout(() => playTone(659, 0.14, 'sine'), 120);
+    setTimeout(() => playTone(784, 0.22, 'sine'), 240);
+  }
+
+  /**
+   * PUZZLE GENERATION ALGORITHM
+   */
+
+  /** 
+   * Generates a valid classic N-Queens solution base to carve regions from. 
+   * @returns {number[]} Array where index is row and value is target column.
+   */
+  function generateSolutionCols(){
+    const cols = new Array(N).fill(-1);
+    const used = new Set();
+    
+    function backtrack(row){
+      if(row === N) return true;
+      const candidates = shuffle([...Array(N).keys()].filter(c => !used.has(c)));
+      for(const c of candidates){
+        // Enforce diagonal separation rule
+        if(row > 0 && Math.abs(c - cols[row-1]) <= 1) continue;
+        cols[row] = c;
+        used.add(c);
+        if(backtrack(row+1)) return true;
+        used.delete(c);
+        cols[row] = -1;
+      }
+      return false;
+    }
+    
+    backtrack(0);
+    return cols;
+  }
+
+  /** Returns valid orthogonal neighbors [r,c] for a cell. */
+  function neighbors4(r, c){
+    const out = [];
+    if(r > 0) out.push([r-1, c]);
+    if(r < N-1) out.push([r+1, c]);
+    if(c > 0) out.push([r, c-1]);
+    if(c < N-1) out.push([r, c+1]);
+    return out;
+  }
+
+  /** 
+   * Randomly expands regions originating from the solution cells.
+   * @param {number[]} cols The generated solution column placements.
+   * @returns {number[][]} 2D array representing region ID per cell.
+   */
+  function generateInitialRegions(cols){
+    const regionGrid = Array.from({length: N}, () => new Array(N).fill(-1));
+    const regionSize = new Array(N).fill(1);
+    const frontiers = Array.from({length: N}, () => []);
+
+    for(let i=0; i<N; i++){
+      const r = i, c = cols[i];
+      regionGrid[r][c] = i; // Assign cell to region 'i'
+      for(const [nr,nc] of neighbors4(r,c)) frontiers[i].push([nr,nc]);
+    }
+
+    let unassigned = (N * N) - N;
+    while(unassigned > 0){
+      const active = [];
+      for(let i=0; i<N; i++) if(frontiers[i].length) active.push(i);
+      if(active.length === 0) break;
+
+      // 40% chance for random region, 60% chance to expand the smallest region
+      let pick = (Math.random() < 0.4) 
+        ? active[Math.floor(Math.random() * active.length)]
+        : active.reduce((best, i) => regionSize[i] < regionSize[best] ? i : best, active[0]);
+
+      const list = frontiers[pick];
+      const idx = Math.floor(Math.random() * list.length);
+      const [r, c] = list[idx];
+      list.splice(idx, 1);
+      
+      if(regionGrid[r][c] !== -1) continue;
+
+      regionGrid[r][c] = pick;
+      regionSize[pick]++;
+      unassigned--;
+      
+      for(const [nr, nc] of neighbors4(r, c)){
+        if(regionGrid[nr][nc] === -1) frontiers[pick].push([nr, nc]);
+      }
+    }
+    return regionGrid;
+  }
+
+  /**
+   * Attempts to solve a region grid. Returns the first alternative solution it finds.
+   * If it returns null, the puzzle is mathematically unique.
+   * @param {number[][]} regs The region grid map.
+   * @param {number[]} solCols The primary target solution to avoid matching.
+   * @returns {Object[]|null} Array of {r,c} placements if alternative found, else null.
+   */
+  function getAltSolution(regs, solCols) {
+    const usedCols = new Array(N).fill(false);
+    const usedRegions = new Array(N).fill(false);
+    const placedCols = new Array(N);
+    let alt = null;
+
+    function bt(row){
+      if(alt) return;
+      if(row === N){
+        let diff = false;
+        for(let i=0; i<N; i++) if(placedCols[i] !== solCols[i]) diff = true;
+        if(diff) {
+          alt = [];
+          for(let i=0; i<N; i++) alt.push({r: i, c: placedCols[i]});
+        }
+        return;
+      }
+      for(let col=0; col<N; col++){
+        if(usedCols[col]) continue;
+        const reg = regs[row][col];
+        if(usedRegions[reg]) continue;
+        if(row > 0 && Math.abs(placedCols[row-1] - col) <= 1) continue;
+        
+        usedCols[col] = true; usedRegions[reg] = true; placedCols[row] = col;
+        bt(row+1);
+        usedCols[col] = false; usedRegions[reg] = false;
+      }
+    }
+    bt(0);
+    return alt;
+  }
+
+  /** 
+   * Prevents regions from splitting into multiple disconnected islands during mutation. 
+   * @returns {boolean} True if region remains whole if (skipR, skipC) is removed.
+   */
+  function isContiguous(regs, regId, skipR, skipC) {
+    let startNode = null;
+    let total = 0;
+    for(let r=0; r<N; r++){
+      for(let c=0; c<N; c++){
+        if(regs[r][c] === regId) {
+          total++;
+          if(r !== skipR || c !== skipC) startNode = [r,c];
+        }
+      }
+    }
+    if(total <= 1) return false;
+
+    let visited = new Set();
+    let q = [startNode];
+    visited.add(startNode[0] + '_' + startNode[1]);
+    let count = 0;
+
+    while(q.length > 0) {
+      let [cr, cc] = q.pop();
+      count++;
+      for(let [nr, nc] of neighbors4(cr, cc)) {
+        if(nr === skipR && nc === skipC) continue;
+        if(regs[nr][nc] === regId && !visited.has(nr + '_' + nc)) {
+          visited.add(nr + '_' + nc);
+          q.push([nr, nc]);
+        }
+      }
+    }
+    return count === total - 1;
+  }
+
+  /** 
+   * Iteratively mutates boundaries until exactly one solution exists.
+   * @returns {number[][]} The generated 2D region board.
+   */
+  function buildUniquePuzzle(){
+    while(true){
+      let sol = generateSolutionCols();
+      let regs = generateInitialRegions(sol);
+
+      let attempts = 0;
+      let unique = false;
+
+      // Iteratively destroy alternate solutions via boundary mutations
+      while(attempts < 300){
+        let alt = getAltSolution(regs, sol);
+        if(!alt){
+          unique = true;
+          break; // mathematically perfect.
+        }
+
+        let validFlips = [];
+        for(let r=0; r<N; r++){
+          for(let c=0; c<N; c++){
+            if(c === sol[r]) continue; // Never move the target queen
+            
+            let oldReg = regs[r][c];
+            let adjRegs = new Set();
+            for(let [nr, nc] of neighbors4(r, c)){
+              if(regs[nr][nc] !== oldReg) adjRegs.add(regs[nr][nc]);
+            }
+            
+            if(adjRegs.size > 0 && isContiguous(regs, oldReg, r, c)) {
+              for(let newReg of adjRegs){
+                validFlips.push({r, c, oldReg, newReg});
+              }
+            }
+          }
+        }
+
+        if(validFlips.length === 0) break; // Dead end layout, restart loop.
+
+        // Prioritize flips that sabotage the found alternative solution
+        let smartFlips = validFlips.filter(f => alt.some(q => q.r === f.r && q.c === f.c));
+        let flip = smartFlips.length > 0 
+                   ? smartFlips[Math.floor(Math.random() * smartFlips.length)] 
+                   : validFlips[Math.floor(Math.random() * validFlips.length)];
+
+        regs[flip.r][flip.c] = flip.newReg;
+        attempts++;
+      }
+      
+      if(unique) {
+        // Enforce aesthetic constraint: at most one region can have exactly 1 cell.
+        let counts = new Array(N).fill(0);
+        for(let r=0; r<N; r++) for(let c=0; c<N; c++) counts[regs[r][c]]++;
+        
+        let singles = counts.filter(x => x === 1).length;
+        if(singles <= 1) {
+          return regs;
+        }
+      }
+    }
+  }
+
+  /**
+   * Initializes a new puzzle state and renders it.
+   */
+  function newPuzzle(){
+    regions = buildUniquePuzzle();
+    board = Array.from({length: N}, () => new Array(N).fill(0));
+    solved = false;
+    generatedCount++;
+    
+    elStatGenerated.textContent = generatedCount;
+    elDimLabel.textContent = N + '×' + N;
+    elQueenTotal.textContent = N;
+    
+    resetTimer();
+    startTimer();
+    renderBoard();
+    updateQueenCount();
+    hideWinOverlay();
+  }
+
+  /**
+   * RENDERING & DRAWING
+   */
+
+  /** Creates the DOM cell elements for the grid. */
+  function renderBoard(){
+    document.documentElement.style.setProperty('--n', N);
+    elBoard.style.gridTemplateColumns = 'repeat(' + N + ', 1fr)';
+    elBoard.style.gridTemplateRows = 'repeat(' + N + ', 1fr)';
+    elBoard.innerHTML = '';
+    
+    for(let r=0; r<N; r++){
+      for(let c=0; c<N; c++){
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.dataset.r = r;
+        cell.dataset.c = c;
+        cell.style.background = PALETTE[regions[r][c] % PALETTE.length];
+        elBoard.appendChild(cell);
+      }
+    }
+    paintCells();
+  }
+
+  /** Updates DOM cells based on current state (Empty: 0, Mark: 1, Queen: 2) */
+  function paintCells(){
+    const conflictSet = assistOn ? computeConflicts() : new Set();
+    
+    document.querySelectorAll('.cell').forEach(cell => {
+      const r = +cell.dataset.r, c = +cell.dataset.c;
+      const val = board[r][c];
+      
+      cell.innerHTML = '';
+      cell.classList.remove('conflict');
+
+      if(colorBlindOn){
+        const sym = document.createElement('div');
+        sym.className = 'cb-mark';
+        sym.textContent = CB_SYMBOLS[regions[r][c] % CB_SYMBOLS.length];
+        cell.appendChild(sym);
+      }
+
+      if(val === 1){
+        const mark = document.createElement('div');
+        mark.className = 'mark';
+        mark.textContent = '×';
+        cell.appendChild(mark);
+      } else if(val === 2){
+        const q = document.createElement('div');
+        q.className = 'queen-icon';
+        q.innerHTML = QUEEN_SVG;
+        cell.appendChild(q);
+        
+        if(conflictSet.has(r + '_' + c)) {
+          cell.classList.add('conflict');
+        }
+      }
+    });
+  }
+
+  /**
+   * GAME LOGIC & WIN CONDITIONS
+   */
+   
+  function getQueens(){
+    const qs = [];
+    for(let r=0; r<N; r++) for(let c=0; c<N; c++) if(board[r][c] === 2) qs.push({r,c});
+    return qs;
+  }
+
+  function isAdjacent(a, b){
+    return Math.abs(a.r - b.r) <= 1 && Math.abs(a.c - b.c) <= 1 && !(a.r === b.r && a.c === b.c);
+  }
+
+  /**
+   * Identifies all queens breaking game rules.
+   * @returns {Set<string>} Set of cell IDs (e.g. "0_3") marked as conflicting.
+   */
+  function computeConflicts(){
+    const qs = getQueens();
+    const bad = new Set();
+    const rowMap = {}, colMap = {}, regMap = {};
+    
+    qs.forEach(q => {
+      const reg = regions[q.r][q.c];
+      (rowMap[q.r] ??= []).push(q);
+      (colMap[q.c] ??= []).push(q);
+      (regMap[reg] ??= []).push(q);
+    });
+    
+    Object.values(rowMap).forEach(arr => { if(arr.length > 1) arr.forEach(q => bad.add(q.r+'_'+q.c)); });
+    Object.values(colMap).forEach(arr => { if(arr.length > 1) arr.forEach(q => bad.add(q.r+'_'+q.c)); });
+    Object.values(regMap).forEach(arr => { if(arr.length > 1) arr.forEach(q => bad.add(q.r+'_'+q.c)); });
+    
+    for(let i=0; i<qs.length; i++){
+      for(let j=i+1; j<qs.length; j++){
+        if(isAdjacent(qs[i], qs[j])){
+          bad.add(qs[i].r+'_'+qs[i].c);
+          bad.add(qs[j].r+'_'+qs[j].c);
+        }
+      }
+    }
+    return bad;
+  }
+
+  function updateQueenCount(){
+    elQueenCount.textContent = getQueens().length;
+  }
+
+  /** Validates rules to trigger win condition dynamically. */
+  function checkWin(){
+    const qs = getQueens();
+    if(qs.length !== N) return;
+    
+    const rows = new Set(qs.map(q => q.r));
+    const cols = new Set(qs.map(q => q.c));
+    const regs = new Set(qs.map(q => regions[q.r][q.c]));
+    
+    if(rows.size !== N || cols.size !== N || regs.size !== N) return;
+    
+    for(let i=0; i<qs.length; i++) {
+      for(let j=i+1; j<qs.length; j++){
+        if(isAdjacent(qs[i], qs[j])) return;
+      }
+    }
+    
+    onSolved();
+  }
+
+  function onSolved(){
+    solved = true;
+    stopTimer();
+    sfxWin();
+    
+    const elapsed = Date.now() - startTime;
+    solvedCount++;
+    streak++;
+    totalSolveMs += elapsed;
+    if(bestTimeMs === null || elapsed < bestTimeMs) bestTimeMs = elapsed;
+
+    elSolvedCount.textContent = solvedCount;
+    elStreakCount.textContent = streak;
+    elStatSolved.textContent = solvedCount;
+    elStatBest.textContent = fmtTime(bestTimeMs);
+    elStatAvg.textContent = fmtTime(totalSolveMs / solvedCount);
+
+    document.getElementById('winSub').textContent = 'Time: ' + fmtTime(elapsed);
+    document.getElementById('winOverlay').classList.add('show');
+  }
+
+  function hideWinOverlay(){
+    document.getElementById('winOverlay').classList.remove('show');
+  }
+
+  /**
+   * INTERACTION (CLICK & DRAG PAINTING)
+   */
+
+  /** Increments a cell state 0 -> 1 -> 2 -> 0 */
+  function cycleCell(r, c){
+    board[r][c] = (board[r][c] + 1) % 3;
+    if(board[r][c] === 1) sfxMark();
+    else if(board[r][c] === 2) sfxQueen();
+    else sfxClear();
+    
+    paintCells();
+    updateQueenCount();
+    checkWin();
+  }
+
+  /** Drag paint application logic */
+  function paintCellDrag(r, c){
+    if(board[r][c] === 2) return false; // Do not overwrite queens
+    if(board[r][c] === dragPaintVal) return false; // Already painted
+    board[r][c] = dragPaintVal;
+    return true;
+  }
+
+  function handleDown(e){
+    if(solved) return;
+    if(e.button !== undefined && e.button !== 0) return; // Ignore right-clicks
+    
+    const cellEl = e.target.closest('.cell');
+    if(!cellEl) return;
+    e.preventDefault();
+    
+    isMouseDown = true;
+    dragMoved = false;
+    const r = +cellEl.dataset.r, c = +cellEl.dataset.c;
+    dragStart = {r, c};
+    // Decide whether to paint marks or erasers based on origin cell state
+    dragPaintVal = board[r][c] === 1 ? 0 : 1; 
+    dragTouched = new Set();
+  }
+
+  function handleMove(e){
+    if(!isMouseDown || solved) return;
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    const cellEl = el && el.closest ? el.closest('.cell') : null;
+    if(!cellEl) return;
+    
+    const r = +cellEl.dataset.r, c = +cellEl.dataset.c;
+    if(!dragMoved && r === dragStart.r && c === dragStart.c) return; // Haven't left cell yet
+    dragMoved = true;
+
+    let changed = false;
+    const startKey = dragStart.r + '_' + dragStart.c;
+    
+    if(!dragTouched.has(startKey)){
+      dragTouched.add(startKey);
+      if(paintCellDrag(dragStart.r, dragStart.c)) changed = true;
+    }
+    
+    const key = r + '_' + c;
+    if(!dragTouched.has(key)){
+      dragTouched.add(key);
+      if(paintCellDrag(r, c)) changed = true;
+    }
+    
+    if(changed){
+      if(dragPaintVal === 1) sfxMark(); else sfxClear();
+      paintCells();
+    }
+  }
+
+  function handleUp(){
+    if(!isMouseDown) return;
+    isMouseDown = false;
+    if(!dragMoved && dragStart){
+      // Treat as single click if no drag occurred
+      cycleCell(dragStart.r, dragStart.c);
+    }
+    dragMoved = false;
+    dragStart = null;
+  }
+
+  function handleContext(e){
+    const cellEl = e.target.closest('.cell');
+    if(!cellEl) return;
+    e.preventDefault();
+    if(solved) return;
+    
+    const r = +cellEl.dataset.r, c = +cellEl.dataset.c;
+    if(board[r][c] !== 0){
+      board[r][c] = 0;
+      sfxClear();
+      paintCells();
+      updateQueenCount();
+    }
+  }
+
+  /**
+   * TIMERS
+   */
+  function startTimer(){
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+      elTimer.textContent = fmtTime(Date.now() - startTime);
+    }, 250);
+  }
+  function stopTimer(){ clearInterval(timerInterval); }
+  function resetTimer(){
+    stopTimer();
+    elTimer.textContent = '00:00';
+  }
+
+  /**
+   * EVENT LISTENERS (UI)
+   */
+  elBoard.addEventListener('mousedown', handleDown);
+  document.addEventListener('mousemove', handleMove);
+  document.addEventListener('mouseup', handleUp);
+  elBoard.addEventListener('contextmenu', handleContext);
+
+  // Buttons
+  document.getElementById('newBoardBtn').addEventListener('click', () => {
+    if(!solved) streak = 0;
+    elStreakCount.textContent = streak;
+    newPuzzle();
+  });
+  
+  document.getElementById('nextBtn').addEventListener('click', () => newPuzzle());
+  
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if(solved) return;
+    board = Array.from({length:N}, () => new Array(N).fill(0));
+    paintCells();
+    updateQueenCount();
+  });
+
+  document.getElementById('assistToggle').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    assistOn = btn.dataset.val === 'on';
+    document.querySelectorAll('#assistToggle button').forEach(b => b.classList.toggle('active', b === btn));
+    paintCells();
+  });
+
+  document.getElementById('sizeButtons').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    N = +btn.dataset.v;
+    document.querySelectorAll('#sizeButtons button').forEach(b => b.classList.toggle('active', b === btn));
+    document.getElementById('sizeLabel').textContent = N + '×' + N;
+    streak = 0;
+    elStreakCount.textContent = streak;
+    newPuzzle();
+  });
+
+  // Accordions
+  const statsPanel = document.getElementById('statsPanel');
+  const rulesPanel = document.getElementById('rulesPanel');
+
+  function toggleSidePanels(showStats) {
+    if(showStats) {
+      statsPanel.classList.add('expanded');
+      rulesPanel.classList.remove('expanded');
+    } else {
+      statsPanel.classList.remove('expanded');
+      rulesPanel.classList.add('expanded');
+    }
+  }
+
+  statsPanel.addEventListener('click', (e) => {
+    if(!statsPanel.classList.contains('expanded')) toggleSidePanels(true);
+  });
+  rulesPanel.addEventListener('click', (e) => {
+    if(!rulesPanel.classList.contains('expanded')) toggleSidePanels(false);
+  });
+
+  // Settings Modal
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  document.getElementById('settingsFab').addEventListener('click', () => modalBackdrop.classList.add('show'));
+  document.getElementById('modalClose').addEventListener('click', () => modalBackdrop.classList.remove('show'));
+  modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) modalBackdrop.classList.remove('show'); });
+
+  function bindPairToggle(id, onChange){
+    const el = document.getElementById(id);
+    el.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if(!btn) return;
+      el.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+      onChange(btn.dataset.val);
+    });
+  }
+
+  bindPairToggle('themeToggle', (val) => document.body.classList.toggle('light-theme', val === 'light'));
+  bindPairToggle('contrastToggle', (val) => document.body.classList.toggle('high-contrast', val === 'on'));
+  bindPairToggle('cbToggle', (val) => { colorBlindOn = val === 'on'; paintCells(); });
+  bindPairToggle('soundToggle', (val) => { soundOn = val === 'on'; });
+
+  const volSlider = document.getElementById('volumeSlider');
+  const volLabel = document.getElementById('volumeLabel');
+  volSlider.addEventListener('input', () => {
+    volume = (+volSlider.value) / 100;
+    volLabel.textContent = volSlider.value + '%';
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    const ok = confirm('Reset all progress? This clears your solved count, streak, and best times.');
+    if(!ok) return;
+    
+    solvedCount = 0;
+    streak = 0;
+    generatedCount = 0;
+    bestTimeMs = null;
+    totalSolveMs = 0;
+    
+    elSolvedCount.textContent = 0;
+    elStreakCount.textContent = 0;
+    elStatSolved.textContent = 0;
+    elStatBest.textContent = '—';
+    elStatAvg.textContent = '—';
+    
+    newPuzzle();
+    modalBackdrop.classList.remove('show');
+  });
+
+  /**
+   * INIT
+   */
+  try {
+    const rawSvg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45 45'><defs><linearGradient id='qGold' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23ffe066'/><stop offset='50%' stop-color='%23facc15'/><stop offset='100%' stop-color='%23ca8a04'/></linearGradient></defs><g fill='%232e1402' stroke='%232e1402' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'><path d='M 9 26 C 17.5 24.5 30 24.5 36 26 L 38 14 L 32 21 L 22.5 11 L 13 21 L 7 14 L 9 26 z'/><path d='M 9 26 C 9 28 10.5 28 11.5 30 C 12.5 31.5 12.5 31 12 33.5 C 10.5 34.5 10.5 36 10.5 36 C 9 37.5 11 38.5 11 38.5 C 17.5 39.5 27.5 39.5 34 38.5 C 34 38.5 35.5 37.5 34 36 C 34 36 34.5 34.5 33 33.5 C 32.5 31 32.5 31.5 33.5 30 C 34.5 28 36 28 36 26 C 27.5 24.5 17.5 24.5 9 26 z'/><circle cx='6' cy='12' r='2.5'/><circle cx='14' cy='9' r='2.5'/><circle cx='22.5' cy='8' r='2.5'/><circle cx='31' cy='9' r='2.5'/><circle cx='39' cy='12' r='2.5'/></g><g fill='url(%23qGold)' stroke='%23633202' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><path d='M 9 26 C 17.5 24.5 30 24.5 36 26 L 38 14 L 32 21 L 22.5 11 L 13 21 L 7 14 L 9 26 z'/><path d='M 9 26 C 9 28 10.5 28 11.5 30 C 12.5 31.5 12.5 31 12 33.5 C 10.5 34.5 10.5 36 10.5 36 C 9 37.5 11 38.5 11 38.5 C 17.5 39.5 27.5 39.5 34 38.5 C 34 38.5 35.5 37.5 34 36 C 34 36 34.5 34.5 33 33.5 C 32.5 31 32.5 31.5 33.5 30 C 34.5 28 36 28 36 26 C 27.5 24.5 17.5 24.5 9 26 z'/><path d='M 11.5 30 C 15 29 30 29 33.5 30' fill='none' stroke='%23633202' stroke-width='1.4'/><path d='M 12 33.5 C 18 32.5 27 32.5 33 33.5' fill='none' stroke='%23633202' stroke-width='1.4'/><circle cx='6' cy='12' r='2.2'/><circle cx='14' cy='9' r='2.2'/><circle cx='22.5' cy='8' r='2.2'/><circle cx='31' cy='9' r='2.2'/><circle cx='39' cy='12' r='2.2'/></g></svg>";
+    const dataUri = 'data:image/svg+xml,' + encodeURIComponent(rawSvg);
+    document.querySelectorAll("link[rel*='icon']").forEach(function(el){ el.remove(); });
+    const link = document.createElement('link');
+    link.type = 'image/svg+xml';
+    link.rel = 'icon';
+    link.href = dataUri;
+    document.head.appendChild(link);
+  } catch(e) {}
+  newPuzzle();
+})();
+</script>
+</body>
+</html>
