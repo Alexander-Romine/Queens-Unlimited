@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Queens Unlimited
 
-# Run and deploy your AI Studio app
+Place queens on a color-coded grid so that no two of them attack each other — with unlimited boards.
 
-This contains everything you need to run your app locally.
+**Live site:** https://queens-unlimited.vercel.app
 
-View your app in AI Studio: https://ai.studio/apps/d0a12fef-b503-4a8c-aea7-eb679d3d54c1
+![Queens Unlimited screenshot](screenshot.png)
 
-## Run Locally
+## How to Play
 
-**Prerequisites:**  Node.js
+- Place exactly one queen in each row, each column and each colored region
+- Queens cannot touch each other, not even diagonally
+- Click once to mark an ×, twice to place a queen, a third time to clear
+- Click and drag to paint several cells at once
 
+## Features
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- Board sizes from 5x5 to 10x10 with unlimited generated boards
+- Optional conflict highlighting, plus new board and clear board actions
+- Timer with solve count, best time, average time and streaks
+- Dark and light themes, high contrast and color-blind modes
+- Sound effects with volume control
+
+## Tech Stack
+
+- [Vite](https://vite.dev/)
+- React
+- TypeScript
+- Hosted on [Vercel](https://vercel.com)
